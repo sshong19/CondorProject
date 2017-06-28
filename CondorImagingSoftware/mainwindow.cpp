@@ -4,17 +4,15 @@
 #include <QImage>
 #include <QGraphicsScene>
 #include <QCamera>
+#include <QCameraInfo>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
-    foreach (const QCameraInfo& cameraInfo, camera){
-        std::cout << cameraInfo.deviceName() << std::endl;
-        if (cameraInfo.deviceName() == ""){
-            std::cout << "No Camera detected" << std::endl;
-        }
+    foreach (const QCameraInfo& cameraInfo, cameras){
+        qDebug() << cameraInfo.deviceName();
     }
 
     ui->setupUi(this);

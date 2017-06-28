@@ -216,8 +216,10 @@ Makefile: CondorImagingSoftware\CondorImagingSoftware.pro ..\..\..\..\Qt\Qt5.6.2
 		..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\mkspecs\features\lex.prf \
 		CondorImagingSoftware\CondorImagingSoftware.pro \
 		..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\qtmaind.prl \
+		..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Multimedia.prl \
 		..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Widgets.prl \
 		..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Gui.prl \
+		..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Network.prl \
 		..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Core.prl
 	$(QMAKE) -spec win32-msvc2013 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile CondorImagingSoftware\CondorImagingSoftware.pro
 ..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\mkspecs\features\spec_pre.prf:
@@ -363,8 +365,10 @@ Makefile: CondorImagingSoftware\CondorImagingSoftware.pro ..\..\..\..\Qt\Qt5.6.2
 ..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\mkspecs\features\lex.prf:
 CondorImagingSoftware\CondorImagingSoftware.pro:
 ..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\qtmaind.prl:
+..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Multimedia.prl:
 ..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Widgets.prl:
 ..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Gui.prl:
+..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Network.prl:
 ..\..\..\..\Qt\Qt5.6.2_32bit\5.6\msvc2013\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-msvc2013 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile CondorImagingSoftware\CondorImagingSoftware.pro
