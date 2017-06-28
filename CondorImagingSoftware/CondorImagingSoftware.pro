@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    ArchitectorSDKFunctions.cpp
+    ArchitectorSDKFunctions.cpp \
+    condorcamera.cpp
 
 HEADERS  += mainwindow.h \
-    ArchitectorSDKFunctions.h
+    ArchitectorSDKFunctions.h \
+    condorcamera.h
 
 FORMS    += mainwindow.ui
 
