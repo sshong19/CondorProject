@@ -3,11 +3,20 @@
 #include "ArchitectorSDKFunctions.h"
 #include <QImage>
 #include <QGraphicsScene>
+#include <QCamera>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    QList<QCameraInfo> cameras = QCameraInfo::availableCameras();
+    foreach (const QCameraInfo& cameraInfo, camera){
+        std::cout << cameraInfo.deviceName() << std::endl;
+        if (cameraInfo.deviceName() == ""){
+            std::cout << "No Camera detected" << std::endl;
+        }
+    }
+
     ui->setupUi(this);
 }
 
