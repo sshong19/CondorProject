@@ -47,3 +47,4 @@ void MainWindow::on_quitButton_clicked()
     condor.disconnectCamera();
     return;
 }
+
