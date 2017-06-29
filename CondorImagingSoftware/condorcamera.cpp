@@ -36,6 +36,15 @@ void CondorCamera::initiateCamera(){
     std::cout << "Initiating the device from the camera" << std::endl;
     //initiating the framegrabber
     std::string grabbertype = "Epix_EL1_01";
+    //Getting the list of frame grabbers
+    std::cout<<"The following framegrabbers are available for use." <<std::endl;
+    int index = 1;
+    //Detecting framegrabbers
+    Architector::DeviceManager::get()->detectAll(100);
+    Architector::StringList frameGrabbers = Architector::FrameGrabberManager::get()->instanceList();
+    for(Architector::StringList::iterator it = frameGrabbers.begin(); it != frameGrabbers.end();++it,++index){
+        std::cout<<"["<<index <<"]" << *it << std::endl;
+    }
     Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabbertype.c_str());
     if(!grabber.isValid()){
         std::cout<<"The framegrabber is not present"<<std::endl;
