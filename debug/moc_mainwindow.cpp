@@ -30,14 +30,14 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 21), // "on_liveButton_clicked"
+QT_MOC_LITERAL(1, 11, 21), // "on_stopButton_clicked"
 QT_MOC_LITERAL(2, 33, 0), // ""
-QT_MOC_LITERAL(3, 34, 21), // "on_stopButton_clicked"
-QT_MOC_LITERAL(4, 56, 21) // "on_quitButton_clicked"
+QT_MOC_LITERAL(3, 34, 21), // "on_quitButton_clicked"
+QT_MOC_LITERAL(4, 56, 21) // "on_liveButton_clicked"
 
     },
-    "MainWindow\0on_liveButton_clicked\0\0"
-    "on_stopButton_clicked\0on_quitButton_clicked"
+    "MainWindow\0on_stopButton_clicked\0\0"
+    "on_quitButton_clicked\0on_liveButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -73,9 +73,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_liveButton_clicked(); break;
-        case 1: _t->on_stopButton_clicked(); break;
-        case 2: _t->on_quitButton_clicked(); break;
+        case 0: _t->on_stopButton_clicked(); break;
+        case 1: _t->on_quitButton_clicked(); break;
+        case 2: _t->on_liveButton_clicked(); break;
         default: ;
         }
     }

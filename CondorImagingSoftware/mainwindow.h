@@ -17,17 +17,20 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void update();
+    Ui::MainWindow getUi();
     ~MainWindow();
 
 private slots:
 
-    void on_liveButton_clicked();
+
     
     void on_stopButton_clicked();
     
     void on_quitButton_clicked();
 
+
+
+    void on_liveButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -20,48 +20,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//void MainWindow::on_liveButton_clicked()
-//{
-//    CondorCamera condor = CondorCamera();
-//    condor.startCamera();
-//    QImage newimg = QImage(condor.getpixeldata(),640,450,QImage::Format_RGB888);
-//    ui->label->setPixmap(QPixmap::fromImage(newimg));
-//    return;
-//}
-
-
-
-//void MainWindow::on_stopButton_clicked()
-//{
-//    CondorCamera condor;
-//    condor.stopCamera();
-//    return;
-//}
-
-
-
-//void MainWindow::on_quitButton_clicked()
-//{
-//    CondorCamera condor;
-//    condor.disconnectCamera();
-//    return;
-//}
-
-
-void MainWindow::on_liveButton_clicked()
-{
-    CondorCamera condor = CondorCamera();
-    condor.startCamera();
-    QImage newimg = QImage(condor.getpixeldata(),640,450,QImage::Format_RGB888);
-    ui->label->setPixmap(QPixmap::fromImage(newimg));
-    return;
-}
-
-
 
 void MainWindow::on_stopButton_clicked()
 {
     CondorCamera condor;
+    condor.startCamera();
     condor.stopCamera();
     return;
 }
@@ -71,4 +34,22 @@ void MainWindow::on_quitButton_clicked()
     CondorCamera condor;
     condor.disconnectCamera();
     return;
+}
+
+
+void MainWindow::on_liveButton_clicked()
+{
+    CondorCamera condor = CondorCamera();
+    condor.startCamera();
+    std:: cout << "References have been set" << std::endl;
+    Architector::DeviceRefPtr dev;
+    dev = condor.getdev();
+//    while(dev -> isGrabbing()){
+        uchar* pixeldata = condor.popImages();
+        std::cout << "popped an image" << std::endl;
+        QImage newimg = QImage(pixeldata,640,450,QImage::Format_Indexed8);
+        std::cout << "drawing on QImage"<< std::endl;
+        ui->label->setPixmap(QPixmap::fromImage(newimg));
+        std::cout << "drawing on label" << std::endl;
+//    }
 }

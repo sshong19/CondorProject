@@ -3,6 +3,8 @@
 
 #include <string>
 #include "ArchitectorSDKFunctions.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include <Architector/BufferManager.h>
 #include <Architector/DeviceManager.h>
 #include <Architector/FrameGrabberManager.h>
@@ -26,6 +28,8 @@ public:
 
     void startCamera();
 
+    uchar* popImages();
+
     void stopCamera();
 
     void disconnectCamera();
@@ -38,6 +42,10 @@ public:
         this->pixeldata = pixeldata;
     }
 
+    Architector::DeviceRefPtr getdev(){
+        return this->dev;
+    }
+
     ~CondorCamera(){
         delete this->pixeldata;
         std::cout << "Destructor is called" << std::endl;
@@ -47,6 +55,9 @@ private:
     uchar* pixeldata;
     std::string deviceName;
     std::string grabberName;
+    Architector::FrameGrabberRefPtr grabber;
+    Architector::DeviceRefPtr dev;
+    Architector::BufferRefPtr buf;
 
 };
 
