@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -29,7 +29,9 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QLabel *label;
-    QPushButton *pushButton;
+    QPushButton *liveButton;
+    QPushButton *stopButton;
+    QPushButton *quitButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -43,11 +45,17 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(60, 40, 640, 480));
+        label->setGeometry(QRect(130, 40, 640, 480));
         label->setMinimumSize(QSize(640, 480));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(720, 120, 75, 23));
+        liveButton = new QPushButton(centralWidget);
+        liveButton->setObjectName(QStringLiteral("liveButton"));
+        liveButton->setGeometry(QRect(20, 50, 75, 23));
+        stopButton = new QPushButton(centralWidget);
+        stopButton->setObjectName(QStringLiteral("stopButton"));
+        stopButton->setGeometry(QRect(20, 90, 75, 23));
+        quitButton = new QPushButton(centralWidget);
+        quitButton->setObjectName(QStringLiteral("quitButton"));
+        quitButton->setGeometry(QRect(20, 130, 75, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -61,6 +69,7 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
+        QObject::connect(quitButton, SIGNAL(clicked()), MainWindow, SLOT(close()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -69,7 +78,9 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         label->setText(QString());
-        pushButton->setText(QApplication::translate("MainWindow", "Live", 0));
+        liveButton->setText(QApplication::translate("MainWindow", "Live", 0));
+        stopButton->setText(QApplication::translate("MainWindow", "Stop", 0));
+        quitButton->setText(QApplication::translate("MainWindow", "Quit", 0));
     } // retranslateUi
 
 };

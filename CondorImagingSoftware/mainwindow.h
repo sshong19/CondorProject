@@ -21,15 +21,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
 
     void on_liveButton_clicked();
-
-    void on_pushButton_2_clicked();
     
     void on_stopButton_clicked();
     
     void on_quitButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;

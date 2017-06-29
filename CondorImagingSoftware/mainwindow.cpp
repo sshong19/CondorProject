@@ -12,8 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    CondorCamera condor = CondorCamera();
-    condor.initiateCamera();
 }
 
 
@@ -22,10 +20,39 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//void MainWindow::on_liveButton_clicked()
+//{
+//    CondorCamera condor = CondorCamera();
+//    condor.startCamera();
+//    QImage newimg = QImage(condor.getpixeldata(),640,450,QImage::Format_RGB888);
+//    ui->label->setPixmap(QPixmap::fromImage(newimg));
+//    return;
+//}
+
+
+
+//void MainWindow::on_stopButton_clicked()
+//{
+//    CondorCamera condor;
+//    condor.stopCamera();
+//    return;
+//}
+
+
+
+//void MainWindow::on_quitButton_clicked()
+//{
+//    CondorCamera condor;
+//    condor.disconnectCamera();
+//    return;
+//}
+
+
 void MainWindow::on_liveButton_clicked()
 {
     CondorCamera condor = CondorCamera();
-    QImage newimg = QImage(condor.getpixeldata(),640,450,Format_RGB888);
+    condor.startCamera();
+    QImage newimg = QImage(condor.getpixeldata(),640,450,QImage::Format_RGB888);
     ui->label->setPixmap(QPixmap::fromImage(newimg));
     return;
 }
@@ -39,12 +66,9 @@ void MainWindow::on_stopButton_clicked()
     return;
 }
 
-
-
 void MainWindow::on_quitButton_clicked()
 {
     CondorCamera condor;
     condor.disconnectCamera();
     return;
 }
-

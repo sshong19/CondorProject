@@ -19,24 +19,24 @@ int getNumber()
 
 void init()
 {
-    //std::cout << "Loading plugins..." << std::endl;
+    std::cout << "Loading plugins..." << std::endl;
 	Architector::PluginLoader* ptr = Architector::PluginLoader::get();
 	Architector::PluginLoader::get()->discoverAvailablePlugins();
 	Architector::PluginLoader::get()->loadAll();
 
 	Architector::PluginLoader::PluginVector plugins = Architector::PluginLoader::get()->plugins();
-    //std::cout << "Loaded " << plugins.size() << " plugins:" << std::endl;
+    std::cout << "Loaded " << plugins.size() << " plugins:" << std::endl;
 
-//	typedef Architector::PluginLoader::PluginVector::iterator PluginIterator;
-//	for (PluginIterator it = plugins.begin(); it != plugins.end(); ++it)
-//	{
-//		Architector::PluginOrganizer* org = (*it);
-//		if (org != NULL)
-//		{
-//			Architector::PluginInfo info = org->info();
-//            std::cout << " - " << info.name() << std::endl;
-//		}
-//	}
+    typedef Architector::PluginLoader::PluginVector::iterator PluginIterator;
+    for (PluginIterator it = plugins.begin(); it != plugins.end(); ++it)
+    {
+        Architector::PluginOrganizer* org = (*it);
+        if (org != NULL)
+        {
+            Architector::PluginInfo info = org->info();
+            std::cout << " - " << info.name() << std::endl;
+        }
+    }
 }
 
 /*!
