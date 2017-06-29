@@ -1,5 +1,6 @@
 #include "condorcamera.h"
 #include "ArchitectorSDKFunctions.h"
+using namespace std;
 
 CondorCamera::CondorCamera()
 {
@@ -97,14 +98,19 @@ void CondorCamera::initiateCamera(){
 }
 
 void CondorCamera::startCamera(){
-    std::string grabberType = this->grabberName;
+    std::string grabberType = "Epix_EL1_01";
     Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabberType.c_str());
+    std::cout << "Reference to Framegrabber"<<std::endl;
     std::string deviceType = "KevinsDevice";
     Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->instance(deviceType.c_str());
+    cout << "Reference to Device" << endl;
     std::string bufferType = "KevinsBuffer";
     Architector::BufferRefPtr buf = Architector::BufferManager::get()->instance(bufferType.c_str());
+    cout << "Reference to Buffer" << endl;
     if(!dev->isConnected()){
         dev->connect();
+    } else if {
+        cout << "Device is connected" << endl;
     }
     //device starts grabbing images
     dev -> startGrabbing();
@@ -139,7 +145,7 @@ void CondorCamera::startCamera(){
 }
 
 void CondorCamera::stopCamera(){
-    std::cout<<"Stop grabbing images" << std::endl;
+    cout<<"Stop grabbing images" << std::endl;
     std::string grabberType = this->grabberName;
     Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabberType.c_str());
     std::string deviceType = "KevinsDevice";
