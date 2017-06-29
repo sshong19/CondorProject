@@ -106,3 +106,35 @@ void CondorCamera::startCamera(){
     }
 
 }
+
+void CondorCamera::stopCamera(){
+    std::cout<<"Stop grabbing images" << std::endl;
+    std::string& grabberType = this->grabberName;
+    Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabbertype.c_str());
+    std::string& deviceType = "KevinsDevice";
+    Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->instance(devicename.c_str());
+    std::string& bufferType = "KevinsBuffer";
+    Architector::BufferRefPtr buf = Archiector::BufferManager::get()->instance(bufferType.c_str());
+    dev->stopGrabbing();
+}
+
+void CondorCamera::disconnectCamera(){
+    std::string& grabberType = this->grabberName;
+    Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabbertype.c_str());
+    std::string& deviceType = "KevinsDevice";
+    Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->instance(devicename.c_str());
+    std::string& bufferType = "KevinsBuffer";
+    Architector::BufferRefPtr buf = Archiector::BufferManager::get()->instance(bufferType.c_str());
+    dev->stopGrabbing();
+    std::cout<<"Stop grabbing images"<<std::endl;
+    dev->disconnect();
+    std::cout<<"disconnecting the device"<<std::endl;
+    buf->disconnectSource();
+    std::cout<<"disconnecting the buffer from the source"<<std::endl;
+    Architector::BufferManager::get()->releaseInstance(buf->name().c_str());
+    std::cout<<"Releasing buffer from manager"<<std::endl;
+    cleanup();
+}
+
+
+

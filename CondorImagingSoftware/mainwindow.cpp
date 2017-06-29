@@ -12,9 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    CondorCamera* condor = new CondorCamera();
-    condor->initiateCamera();
-    delete condor;
+    CondorCamera condor = CondorCamera();
+    condor.initiateCamera();
 }
 
 
@@ -23,9 +22,28 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_liveButton_clicked()
 {
-    CondorCamera* condor = new CondorCamera();
-    QImage newimg = QImage(condor->pixeldata,640,450,Format_RGB888);
+    CondorCamera condor = CondorCamera();
+    QImage newimg = QImage(condor.getpixeldata(),640,450,Format_RGB888);
     ui->label->setPixmap(QPixmap::fromImage(newimg));
+    return;
+}
+
+
+
+void MainWindow::on_stopButton_clicked()
+{
+    CondorCamera condor;
+    condor.stopCamera();
+    return;
+}
+
+
+
+void MainWindow::on_quitButton_clicked()
+{
+    CondorCamera condor;
+    condor.disconnectCamera();
+    return;
 }
