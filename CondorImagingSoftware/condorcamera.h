@@ -11,6 +11,12 @@
 #include <Architector/Utility/FileSystem.h>
 #include <Architector/Utility/PluginLoader.h>
 
+#include <algorithm>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <fstream>
+
 class CondorCamera
 {
 public:
