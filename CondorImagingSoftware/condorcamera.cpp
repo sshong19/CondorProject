@@ -102,7 +102,7 @@ void CondorCamera::startCamera(){
     while(dev->isGrabbing){
         bufPtr -> pop(img);
         Architector::ChannelRefPtr colorchannel = img -> channel(0);
-        uchar* pixeldata = reinterpret_cast<uchar*>(colorchannel->uint8Data());
+        this->pixeldata = reinterpret_cast<uchar*>(colorchannel->uint8Data());
     }
 
 }

@@ -17,6 +17,8 @@ public:
     void initiateCamera();
     void startCamera();
     void stopCamera();
+    uchar* pixeldata;
+
 private:
     std::string deviceName;
     std::string grabberName;
