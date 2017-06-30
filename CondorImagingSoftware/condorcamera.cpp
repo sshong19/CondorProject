@@ -30,7 +30,7 @@ void CondorCamera::initiateCamera(){
     const std::string type = "Condor3-ICX692-CL";
     std::string devName = "KevinsDevice";
     //initiating the device(camera)
-    this->dev = Architector::DeviceManager::get()->create(type.c_str(),devName);
+    Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->create(type.c_str(),devName);
     if (!dev.isValid()){
         std::cout << "Could not create instance of " << type << " ." << std::endl;
     }
@@ -46,7 +46,7 @@ void CondorCamera::initiateCamera(){
     for(Architector::StringList::iterator it = frameGrabbers.begin(); it != frameGrabbers.end();++it,++index){
         std::cout<<"["<<index <<"]" << *it << std::endl;
     }
-    this->grabber = Architector::FrameGrabberManager::get()->instance(grabbertype.c_str());
+    Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabbertype.c_str());
     if(!grabber.isValid()){
         std::cout<<"The framegrabber is not present"<<std::endl;
     }
@@ -62,7 +62,7 @@ void CondorCamera::initiateCamera(){
     uint32_t taps = 1;
     uint32_t bitdepth = 8;
     uint32_t width = 640;
-    uint32_t height = 450;
+    uint32_t height = 480;
     grabber->setProperty("Image::Tap",taps-1u);
     grabber->setProperty("Image::BitDepth",bitdepth);
     grabber->setProperty("Image::Width",width);
@@ -81,17 +81,17 @@ void CondorCamera::initiateCamera(){
 
     //Create Buffer
     std::string bufName = "KevinsBuffer";
-    this->buf = Architector::BufferManager::get()->create("ImageFifo",1,bufName);
+    Architector::BufferRefPtr buf = Architector::BufferManager::get()->create("ImageFifo",1,bufName);
     if(buf.isValid()){
+        cout << "buffer is valid" << endl;
         buf->beginPropertyChange();
         buf->setProperty("PushBlock","On");
         buf->setProperty("PopBlock","On");
         buf->endPropertyChange();
     }
-
     //Connect device to the buffer
     buf -> connectSource(dev,"Output");
-
+    cout << "connected to the source" << endl;
 //    //Connect framegrabber to the buffer
 //    grabber -> setImageBuffer(buf);
 
@@ -99,13 +99,11 @@ void CondorCamera::initiateCamera(){
 
 void CondorCamera::startCamera(){
     std::string grabberType = "Epix_EL1_01";
-    this->grabber = Architector::FrameGrabberManager::get()->instance(grabberType.c_str());
-    std::cout << "Reference to Framegrabber"<<std::endl;
+    Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabberType.c_str());
     std::string deviceType = "KevinsDevice";
-    this->dev = Architector::DeviceManager::get()->instance(deviceType.c_str());
-    cout << "Reference to Device" << endl;
+    Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->instance(deviceType.c_str());
     std::string bufferType = "KevinsBuffer";
-    this->buf = Architector::BufferManager::get()->instance(bufferType.c_str());
+    Architector::BufferRefPtr buf = Architector::BufferManager::get()->instance(bufferType.c_str());
     cout << "Reference to Buffer" << endl;
     if(!dev->isConnected()){
         dev->connect();
@@ -122,7 +120,7 @@ void CondorCamera::startCamera(){
     //cleans up if it gives bad images
     if(bufPtr == NULL){
         std::cout << "Bad buffer." << std::endl;
-        this->dev -> stopGrabbing();
+        dev -> stopGrabbing();
         dev->disconnect();
         std::cout << "Cleaning up..." << std::endl;
         std::cout << "Unloading plugins..." << std::endl;
@@ -140,10 +138,20 @@ void CondorCamera::startCamera(){
 }
 
 uchar* CondorCamera::popImages(){
-    Architector::ImageBuffer*bufPtr = Architector::buffer_cast<Architector::ImageBuffer>(this->buf);
+    std::string grabberType = this->grabberName;
+    Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabberType.c_str());
+    std::string deviceType = "KevinsDevice";
+    Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->instance(deviceType.c_str());
+    std::string bufferType = "KevinsBuffer";
+    Architector::BufferRefPtr buf = Architector::BufferManager::get()->instance(bufferType.c_str());
+
+    Architector::ImageBuffer*bufPtr = Architector::buffer_cast<Architector::ImageBuffer>(buf);
     cout << "Device is grabbing images" << endl;
-    grabber->grabStart();
     Architector::ImgRefPtr img;
+    grabber->grabStart();
+    if (grabber->isGrabbing()){
+        cout << "Framegrabber is grabbing the image" << endl;
+    }
     if (bufPtr == NULL){
         cout << "No bufPtr" << endl;
     }
@@ -161,30 +169,37 @@ uchar* CondorCamera::popImages(){
     if (!img.isValid()){
         cout << "Img is not present" << endl;
     }
-    cout << img->sizeInBytes() << endl;
+    cout << "Image width: " << img->width() << endl;
+    cout << "Image height: " << img->height() << endl;
+    cout << "Image size in bytes: " << img->sizeInBytes() << endl;
     cout << "Img popped from the buffer" << endl;
     Architector::ChannelRefPtr colorchannel = img -> channel(0);
+    cout << "Quantum count: " << colorchannel->quantumCount()<<endl;
     return reinterpret_cast<uchar*>(colorchannel->uint8Data());
 }
 
 void CondorCamera::stopCamera(){
     cout<<"Stop grabbing images" << std::endl;
-//    std::string grabberType = this->grabberName;
-//    Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabberType.c_str());
-//    std::string deviceType = "KevinsDevice";
-//    Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->instance(deviceType.c_str());
-//    std::string bufferType = "KevinsBuffer";
-//    Architector::BufferRefPtr buf = Architector::BufferManager::get()->instance(bufferType.c_str());
-    this->dev->stopGrabbing();
+    std::string grabberType = this->grabberName;
+    Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabberType.c_str());
+    std::string deviceType = "KevinsDevice";
+    Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->instance(deviceType.c_str());
+    std::string bufferType = "KevinsBuffer";
+    Architector::BufferRefPtr buf = Architector::BufferManager::get()->instance(bufferType.c_str());
+    dev->stopGrabbing();
+    return;
 }
 
 void CondorCamera::disconnectCamera(){
-//    std::string grabberType = this->grabberName;
-//    Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabberType.c_str());
-//    std::string deviceType = "KevinsDevice";
-//    Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->instance(deviceType.c_str());
-//    std::string bufferType = "KevinsBuffer";
-//    Architector::BufferRefPtr buf = Architector::BufferManager::get()->instance(bufferType.c_str());
+    std::string grabberType = this->grabberName;
+    Architector::FrameGrabberRefPtr grabber = Architector::FrameGrabberManager::get()->instance(grabberType.c_str());
+    std::string deviceType = "KevinsDevice";
+    Architector::DeviceRefPtr dev = Architector::DeviceManager::get()->instance(deviceType.c_str());
+    std::string bufferType = "KevinsBuffer";
+    Architector::BufferRefPtr buf = Architector::BufferManager::get()->instance(bufferType.c_str());
+    cout << "here" << endl;
+    grabber->grabStop();
+    cout << "Grabber stopped" << endl;
     dev->stopGrabbing();
     std::cout<<"Stop grabbing images"<<std::endl;
     dev->disconnect();
@@ -194,6 +209,7 @@ void CondorCamera::disconnectCamera(){
     Architector::BufferManager::get()->releaseInstance(buf->name().c_str());
     std::cout<<"Releasing buffer from manager"<<std::endl;
     cleanup();
+    return;
 }
 
 

@@ -6,79 +6,437 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>817</width>
-    <height>607</height>
+    <width>1444</width>
+    <height>741</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>130</x>
-      <y>40</y>
-      <width>640</width>
-      <height>480</height>
+      <x>190</x>
+      <y>30</y>
+      <width>1704</width>
+      <height>972</height>
      </rect>
     </property>
-    <property name="minimumSize">
-     <size>
-      <width>640</width>
-      <height>480</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
+    <layout class="QGridLayout" name="FourDisplaysLayout">
+     <item row="0" column="0">
+      <layout class="QHBoxLayout" name="ColorCameraLayout">
+       <item>
+        <widget class="QLabel" name="ColorCamera_Img">
+         <property name="minimumSize">
+          <size>
+           <width>640</width>
+           <height>480</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="ColorCamera_StatsGraph">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>480</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Color Camera</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget_8">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>97</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="ColorCamera_StatLabels">
+           <item>
+            <widget class="QLabel" name="ColorCamera_FPS">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Frames Per second:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="ColorCamera_EXP">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Esposure:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="ColorCamera_WL">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>White Light:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="1">
+      <layout class="QHBoxLayout" name="NIR1Layout">
+       <item>
+        <widget class="QLabel" name="NIR1_Img">
+         <property name="minimumSize">
+          <size>
+           <width>640</width>
+           <height>480</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="NIR1_StatsGraph">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>480</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Color Camera</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>97</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="NIR1_StatLabels">
+           <item>
+            <widget class="QLabel" name="NIR1_FPS">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Frames Per second:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="NIR1_EXP">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Esposure:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="NIR1_WL">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>White Light:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
+      <layout class="QHBoxLayout" name="NIR2_Layout">
+       <item>
+        <widget class="QLabel" name="NIR2_Img">
+         <property name="minimumSize">
+          <size>
+           <width>640</width>
+           <height>480</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="NIR2_StatsGraph">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>480</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Color Camera</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget_5">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>97</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="NIR2_StatLabels">
+           <item>
+            <widget class="QLabel" name="NIR2_FPS">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Frames Per second:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="NIR2_EXP">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Esposure:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="NIR2_WL">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>White Light:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="1">
+      <layout class="QHBoxLayout" name="LiveStatsLayout">
+       <item>
+        <widget class="QLabel" name="Merge_Img">
+         <property name="minimumSize">
+          <size>
+           <width>640</width>
+           <height>480</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="LiveStatsandGraph">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>480</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Color Camera</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget_7">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>97</width>
+            <height>101</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="LiveStats_StatLabels">
+           <item>
+            <widget class="QLabel" name="LiveStats_FPS">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Frames Per second:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="LiveStats_EXP">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Esposure:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="LiveStats_WL">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>18</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>White Light:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="liveButton">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>75</width>
-      <height>23</height>
+      <x>10</x>
+      <y>30</y>
+      <width>168</width>
+      <height>70</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Live</string>
-    </property>
+    <layout class="QGridLayout" name="VideoControlButtons">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="liveButton">
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>31</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Live</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="snapButton">
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>31</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Snap</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="stopButton">
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>31</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Stop</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="recordButton">
+       <property name="minimumSize">
+        <size>
+         <width>75</width>
+         <height>31</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Record</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="stopButton">
+   <widget class="QPushButton" name="initiateButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>90</y>
-      <width>75</width>
-      <height>23</height>
+      <x>10</x>
+      <y>110</y>
+      <width>171</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>Stop</string>
+     <string>Initiate Camera</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="quitButton">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>130</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Quit</string>
-    </property>
-   </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>initiateButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>817</width>
+     <width>1444</width>
      <height>21</height>
     </rect>
    </property>
@@ -95,22 +453,5 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections>
-  <connection>
-   <sender>quitButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>57</x>
-     <y>174</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>408</x>
-     <y>303</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -2,13 +2,13 @@
 #include "condorcamera.h"
 #include "ArchitectorSDKFunctions.h"
 #include <QApplication>
+#include "initialwindow.h"
 
 int main(int argc, char *argv[])
 {
-    CondorCamera condor = CondorCamera();
-    condor.initiateCamera();
+
     QApplication a(argc, argv);
-    MainWindow w;
+    initialWindow w;
     w.show();
     return a.exec();
 }

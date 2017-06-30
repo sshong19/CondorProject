@@ -22,15 +22,11 @@ public:
 
 private slots:
 
-
-    
     void on_stopButton_clicked();
-    
-    void on_quitButton_clicked();
 
+    void on_snapButton_clicked();
 
-
-    void on_liveButton_clicked();
+    void on_initiateButton_clicked();
 
 private:
     Ui::MainWindow *ui;

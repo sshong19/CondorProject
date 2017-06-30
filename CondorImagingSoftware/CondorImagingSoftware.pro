@@ -15,13 +15,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     ArchitectorSDKFunctions.cpp \
-    condorcamera.cpp
+    condorcamera.cpp \
+    initialwindow.cpp
 
 HEADERS  += mainwindow.h \
     ArchitectorSDKFunctions.h \
-    condorcamera.h
+    condorcamera.h \
+    initialwindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    initialwindow.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/'../../../../../Program Files (x86)/Quest Innovations/Architector_SDK_1.4.2/lib/' -lArchitectorCore
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/'../../../../../Program Files (x86)/Quest Innovations/Architector_SDK_1.4.2/lib/' -lArchitectorCore-d

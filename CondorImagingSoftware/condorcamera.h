@@ -42,10 +42,6 @@ public:
         this->pixeldata = pixeldata;
     }
 
-    Architector::DeviceRefPtr getdev(){
-        return this->dev;
-    }
-
     ~CondorCamera(){
         delete this->pixeldata;
         std::cout << "Destructor is called" << std::endl;
@@ -55,9 +51,6 @@ private:
     uchar* pixeldata;
     std::string deviceName;
     std::string grabberName;
-    Architector::FrameGrabberRefPtr grabber;
-    Architector::DeviceRefPtr dev;
-    Architector::BufferRefPtr buf;
 
 };
 
