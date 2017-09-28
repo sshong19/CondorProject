@@ -25,8 +25,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_stopButton_clicked()
 {
     CondorCamera condor;
-    condor.startCamera();
     condor.stopCamera();
+    condor.disconnectCamera();
     return;
 }
 
@@ -40,17 +40,17 @@ void MainWindow::on_initiateButton_clicked()
 void MainWindow::on_snapButton_clicked()
 {
     CondorCamera condor = CondorCamera();
-    condor.startCamera();
+    uchar** arrayOfChannelPointers = condor.snapshot();
     std:: cout << "References have been set" << std::endl;
-    uchar* pixeldata = condor.popImages();
     std::cout << "popped an image" << std::endl;
-    int bytes_per_line = 1280*3;
-    QImage newimg;
-    newimg.fromData(pixeldata,307200);
+    QImage newimg;QImage newimg1; QImage newimg2;
+    newimg.fromData(arrayOfChannelPointers[0],307200);
+    newimg1.fromData(arrayOfChannelPointers[1],307200);
+    newimg2.fromData(arrayOfChannelPointers[2],307200);
     std::cout << "drawing on QImage"<< std::endl;
     ui->ColorCamera_Img->setPixmap(QPixmap::fromImage(newimg));
-    ui->NIR1_Img ->setPixmap(QPixmap::fromImage(newimg));
-    ui->NIR2_Img ->setPixmap(QPixmap::fromImage(newimg));
+    ui->NIR1_Img ->setPixmap(QPixmap::fromImage(newimg1));
+    ui->NIR2_Img ->setPixmap(QPixmap::fromImage(newimg2));
     ui->Merge_Img->setPixmap(QPixmap::fromImage(newimg));
     std::cout << "drawing on label" << std::endl;
 }

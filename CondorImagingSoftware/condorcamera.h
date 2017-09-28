@@ -34,6 +34,8 @@ public:
 
     void disconnectCamera();
 
+    uchar** snapshot();
+
     uchar* getpixeldata(){
         return this->pixeldata;
     }
